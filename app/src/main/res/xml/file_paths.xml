@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- a subdir in cache; automatically cleared by the OS sometimes, you can also clean up -->
+    <cache-path name="shared_export" path="shared_export/"/>
+</paths>
