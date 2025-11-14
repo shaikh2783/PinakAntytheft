@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import androidx.lifecycle.ViewModel
 import com.app.antitheft.Helper.datastore.DataStoreManager
-import com.app.antitheft.data.api.LoginRepository
+import com.app.antitheft.data.repository.LoginRepository
 import com.app.antitheft.data.network.RetrofitClient
 
 data class LoginUiState(
@@ -51,15 +51,23 @@ class LoginViewModel : ViewModel() {
                 _uiState.update { it.copy(isLoading = true, errorMessage = null) }
 
                 val deviceId = DeviceUtil.getDeviceId(context)
+
                 val response = repo.login(state.email, state.password, deviceId)
 
-                if (response.status) {
-                    response.token?.let { dataStore.saveToken(it) }
+                if (response.status == true) {
+
+                    dataStore.saveLoginData(
+                        token = response.data?.token ?: "",
+                        userId = response.data?.id?.toString() ?: "",
+                        email = response.data?.email ?: "",
+                        name = response.data?.first_name ?: ""
+                    )
+
                     onSuccess()
+
                 } else {
                     _uiState.update { it.copy(errorMessage = response.message) }
                 }
-
             } catch (e: Exception) {
                 _uiState.update { it.copy(errorMessage = "Unable to reach server") }
             } finally {

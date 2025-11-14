@@ -1,29 +1,58 @@
 package com.app.antitheft
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.unit.dp
-
+import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
+import com.app.antitheft.Helper.datastore.DataStoreManager
+import com.app.antitheft.data.repository.LocationRepository
+import com.app.antitheft.service.FirebaseListenerService
+import com.app.antitheft.ui.screens.DashboardScreen
+import com.app.antitheft.viewmodel.DashboardViewModel
+import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.launch
+import kotlin.getValue
 class MainActivity : ComponentActivity() {
+
+    private lateinit var locationRepo: LocationRepository
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
 
-        setContent {
-            MaterialTheme {
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(color = colorResource(R.color.primary))
-                        .padding(horizontal = 18.dp)
-                )
+        val dataStore = DataStoreManager.getInstance(this)
+
+        locationRepo = LocationRepository(this)
+        val viewModel: DashboardViewModel by viewModels()
+        lifecycleScope.launch {
+            dataStore.getUserId.collect { id ->
+                println("Stored User ID = $id")
+
+                if (id != null) {
+                    viewModel.userId = id   // ✅ IMPORTANT: assign to ViewModel
+                }
             }
         }
+
+
+        setContent {
+            DashboardScreen(
+                viewModel = viewModel,
+                onAllPermissionGranted = { userId ->
+                    startFirebaseService(userId)
+                }
+            )
+        }
     }
+    fun startFirebaseService(userId: String) {
+        val intent = Intent(this, FirebaseListenerService::class.java)
+        intent.putExtra("userId", userId)
+        ContextCompat.startForegroundService(this, intent)
+    }
+
+
 }
+

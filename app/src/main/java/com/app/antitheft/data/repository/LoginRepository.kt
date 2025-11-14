@@ -1,4 +1,4 @@
-package com.app.antitheft.data.api
+package com.app.antitheft.data.repository
 
 import com.app.antitheft.data.remote.ApiService
 import com.app.antitheft.data.remote.LoginRequest

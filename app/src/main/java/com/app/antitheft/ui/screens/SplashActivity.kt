@@ -53,21 +53,18 @@ class SplashActivity : ComponentActivity() {
 @Composable
 fun SplashScreen() {
     val context = LocalContext.current // ✅ Get Activity context
-    val dataStore = DataStoreManager(context)
+    val dataStore = DataStoreManager.getInstance(context)
 
     LaunchedEffect(Unit) {
         delay(2000) // 2 seconds
 
+        val token = dataStore.getToken.first()
 
-            val token = dataStore.getToken.first()
-
-            if (token.isNotEmpty()) {
-                context.startActivity(Intent(context, MainActivity::class.java))
-            } else {
-                context.startActivity(Intent(context, LoginActivity::class.java))
-            }
-
-
+        if (!token.isNullOrEmpty()) {
+            context.startActivity(Intent(context, MainActivity::class.java))
+        } else {
+            context.startActivity(Intent(context, LoginActivity::class.java))
+        }
         if (context is ComponentActivity) {
             context.finish() // ✅ close SplashActivity
         }
