@@ -1,0 +1,64 @@
+{
+  "project_info": {
+    "project_number": "255974691255",
+    "firebase_url": "https://pinak-security-default-rtdb.firebaseio.com",
+    "project_id": "pinak-security",
+    "storage_bucket": "pinak-security.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:255974691255:android:1a7a9d48c3813706c8d832",
+        "android_client_info": {
+          "package_name": "com.pinak.antitheft"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "255974691255-lhv5vsbkmcrs3hf8hbqob99b2h4b87r6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pinak.antitheft",
+            "certificate_hash": "fe49dad2a4ee5889ba69222aa5d465b217daac72"
+          }
+        },
+        {
+          "client_id": "255974691255-qjlhvs83gk4f029qr6op572u6fii4gub.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pinak.antitheft",
+            "certificate_hash": "d7e7b0afe6e46e4b32d13f798b2a32874113a325"
+          }
+        },
+        {
+          "client_id": "255974691255-rmvjjno741jc3slglp9utlipo07n073e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pinak.antitheft",
+            "certificate_hash": "bd73ac545a5fbb3446adb03b73e88da8f428824c"
+          }
+        },
+        {
+          "client_id": "255974691255-efvsuptum9buvf2tpds7p6i7toa4g1eg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUbc-K7Tv2MJxz2BYa5GHmdtvdMfqjJu8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "255974691255-efvsuptum9buvf2tpds7p6i7toa4g1eg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
