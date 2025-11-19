@@ -2,11 +2,9 @@ package com.app.antitheft.viewmodel
 
 import android.Manifest
 import android.app.Application
-import android.content.Context
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.AndroidViewModel
-import com.app.antitheft.data.repository.LocationRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
@@ -25,15 +23,6 @@ class DashboardViewModel(
 
     private val _permissionState = MutableStateFlow(PermissionUiState())
     val permissionState = _permissionState.asStateFlow()
-    private val locationRepo = LocationRepository(app)
-
-    fun onAllPermissionsGranted() {
-        val prefs = app.getSharedPreferences("prefs", Context.MODE_PRIVATE)
-        val userId = prefs.getString("userId", null) ?: return
-
-        // Attach Firebase listener
-        locationRepo.startListening(userId)
-    }
     fun refreshPermissions() {
         val context = app.applicationContext
         val hasLoc = ActivityCompat.checkSelfPermission(

@@ -11,13 +11,6 @@ import com.app.antitheft.data.datasource.FirebaseLocationFlagDataSource
 
 class LocationRepository(private val context: Context) {
 
-    fun startListening(userId: String) {
-        FirebaseLocationFlagDataSource.observeLocationFlag(userId) { required ->
-            if (required) {
-                triggerOneTimeLocationUpload()
-            }
-        }
-    }
 
     private fun triggerOneTimeLocationUpload() {
         val prefs = context.getSharedPreferences("prefs", Context.MODE_PRIVATE)

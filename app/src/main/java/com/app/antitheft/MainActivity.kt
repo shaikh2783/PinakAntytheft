@@ -8,7 +8,6 @@ import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.app.antitheft.Helper.datastore.DataStoreManager
-import com.app.antitheft.data.repository.LocationRepository
 import com.app.antitheft.service.FirebaseListenerService
 import com.app.antitheft.ui.screens.DashboardScreen
 import com.app.antitheft.viewmodel.DashboardViewModel
@@ -17,15 +16,11 @@ import kotlinx.coroutines.launch
 import kotlin.getValue
 class MainActivity : ComponentActivity() {
 
-    private lateinit var locationRepo: LocationRepository
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         FirebaseDatabase.getInstance().setPersistenceEnabled(true)
 
         val dataStore = DataStoreManager.getInstance(this)
-
-        locationRepo = LocationRepository(this)
         val viewModel: DashboardViewModel by viewModels()
         lifecycleScope.launch {
             dataStore.getUserId.collect { id ->

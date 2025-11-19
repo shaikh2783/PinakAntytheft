@@ -4,15 +4,14 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
+import androidx.annotation.RequiresPermission
 import androidx.core.content.ContextCompat
-import androidx.datastore.preferences.core.edit
 import androidx.work.CoroutineWorker
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.location.Priority
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.tasks.await
 import okhttp3.MultipartBody
@@ -28,6 +27,7 @@ class UploadLocationWorker(
 
     private val client = OkHttpClient()
 
+    @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
     override suspend fun doWork(): Result {
 
         val userId = inputData.getString("userId") ?: return Result.failure()

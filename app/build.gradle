@@ -59,28 +59,33 @@ dependencies {
     implementation libs.androidx.room.ktx
 
 // Retrofit (Required)
-    implementation("com.squareup.retrofit2:retrofit:2.11.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 
 // OkHttp Logging
-    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
+    implementation(libs.logging.interceptor)
 
 // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
 
 // DataStore
-    implementation("androidx.datastore:datastore-preferences:1.1.1")
+    implementation(libs.datastore.preferences)
 
-    implementation "com.google.accompanist:accompanist-systemuicontroller:0.32.0"
+    implementation libs.accompanist.systemuicontroller
 // Firebase Realtime Database
-    implementation("com.google.firebase:firebase-database-ktx:21.0.0")
+    implementation(libs.firebase.database.ktx)
 
 // Play Services Location
-    implementation("com.google.android.gms:play-services-location:21.3.0")
+    implementation(libs.play.services.location)
 
 // WorkManager (KTX)
-    implementation("androidx.work:work-runtime-ktx:2.9.1")
+    implementation(libs.androidx.work.runtime.ktx)
+    implementation libs.androidx.camera.core
+    implementation(libs.androidx.camera.camera2)   // ✅ IMPORTANT
+    implementation libs.androidx.lifecycle.process
+    implementation libs.androidx.lifecycle.service
+    implementation libs.androidx.camera.lifecycle
 
 
 }
