@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<device-admin xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-policies>
+        <!-- Required to receive broadcasts for failed password/pattern attempts -->
+        <watch-login />
+
+        <!-- Add other policies your app might need, for example: -->
+        <!-- <force-lock /> -->
+        <!-- <wipe-data /> -->
+    </uses-policies>
+</device-admin>

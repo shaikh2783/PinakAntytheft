@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Pinak AntiTheft</string>
+    <string name="device_admin_description">This permission is required to monitor wrong unlock attempts and enhance your device\'s security.</string>
 </resources>
